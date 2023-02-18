@@ -2,14 +2,13 @@
 function getInputFildValue(value){
     const inputFild = document.getElementById(value);
     const inputFildValue = inputFild.value;
-
+    const inputFildValueNumber = parseFloat(inputFildValue);
     inputFild.value = '';
-    if (inputFildValue == "" || parseFloat(inputFildValue)== NaN || parseFloat(inputFildValue) <= 0) {
+    if (isNaN(parseFloat(inputFildValueNumber))|| inputFildValueNumber <= 0) {
         alert('Input a Valid number');
         return;
     }
     else{
-        const inputFildValueNumber = parseFloat(inputFildValue);
         return inputFildValueNumber;
     }
     
@@ -20,11 +19,14 @@ let countnumber = 0 ;
 function displayData(cardname, total, countnumber) {
     const container = document.getElementById('table-container');
     const tr = document.createElement('tr');
+    if (isNaN(total)) {
+        return;
+    }
     tr.innerHTML = `
     <td>${countnumber}</td>
     <td>${cardname}</td>
     <td>${total} ${'cm'}<sup>${2}</sup></td>
-    <td><button type="button" class="btn btn-primary me-0">${'click'}</button></td>
+    <td><button type="button" class="btn btn-primary me-0">${'Covert to m'}<sup>${2}</sup></button></td>
     `;
     container.appendChild(tr);
 }
